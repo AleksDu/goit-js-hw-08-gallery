@@ -65,8 +65,28 @@ const images = [
 ];
 
 const gallery = document.querySelector('.js-gallery');
+
 const imageMarkup = createImageMarkup('images');
+
 gallery.insertAdjacentHTML('beforeend', imageMarkup);
+
+gallery.addEventListener('click', onGallery);
+
+function onGallery(event) {
+  if (!event.target.classlist.contains('gallery__image')) {
+    return
+  }
+  console.log('event.target')
+  
+  const currentActiveImage = document.querySelector('.gallery__item.is-active');
+  if (currentActiveImage) {
+    currentActiveImage.remove('is-active')
+  }
+  const galleryItem = event.target;
+  const parentImage = galleryItem.closest('.gallery__item');
+  parentImage.classlist.add('is-active');
+}
+
 function createImageMarkup() {
   return images
     .map(({ preview, original, description }) => {
