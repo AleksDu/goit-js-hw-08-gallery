@@ -79,12 +79,12 @@ function imagesClick(event) {
   const openModalBtn = document.querySelector('.js-gallery');
   openModalBtn.addEventListener('click', onOpen);
 
- 
   function onOpen() {
   openModalBtn.addEventListener('keydown', onEscKeyPress);
  
 modal.classList.add("is-open");
 };
+ 
 
   openModalBtn.src = event.target.dataset.source;
 }
