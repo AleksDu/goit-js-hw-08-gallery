@@ -76,12 +76,12 @@ function onOpen(event) {
   event.preventDefault();
   // console.log('click')
   window.addEventListener('keydown', onEscKeyPress);
-  document.body.classlist.add('is-open');
+  document.body.classList.add('is-open');
  
 };
 function onClose() {
   window.removeEventListener('keydown', onEscKeyPress);
-  document.body.classlist.remove('is-open')
+  document.body.classList.remove('is-open')
 };
 
 function onEscKeyPress(event) {
@@ -105,7 +105,7 @@ function clearEl() {
 // gallery.addEventListener('click', onGallery);
 
 // function onGallery(event) {
-//   if (!event.target.classlist.contains('gallery__image')) {
+//   if (!event.target.classList.contains('gallery__image')) {
 //     return
 //   }
 //   console.log('event.target')
@@ -116,7 +116,7 @@ function clearEl() {
 //   }
 //   const galleryItem = event.target;
 //   const parentImage = galleryItem.closest('.gallery__item');
-//   parentImage.classlist.add('is-active');
+//   parentImage.classList.add('is-active');
 // }
 
 function createImageMarkup() {
