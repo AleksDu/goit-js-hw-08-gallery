@@ -64,28 +64,55 @@ const images = [
   },
 ];
 
+const openModalBtn = document.querySelector('.lightbox');
+const closeModalBtn = document.querySelector('button[data-action="close-lightbox"]');
+openModalBtn.addEventListener('click', onOpen);
+closeModalBtn.addEventListener('click', onClose);
+
+function onOpen(event) {
+  window.addEventListener('keydown', onEscKeyPress);
+  document.body.classlist.add('is-open');
+  event.preventDefault();
+};
+function onClose() {
+  window.removeEventListener('keydown', onEscKeyPress);
+  document.body.classlist.remove('is-open')
+};
+
+function onEscKeyPress(event) {
+  console.log(event.code);
+  if (event.code === 'Escape') {
+    onClose();
+  }
+  onClose();
+}
 const gallery = document.querySelector('.js-gallery');
 
 const imageMarkup = createImageMarkup('images');
 
 gallery.insertAdjacentHTML('beforeend', imageMarkup);
 
-gallery.addEventListener('click', onGallery);
-
-function onGallery(event) {
-  if (!event.target.classlist.contains('gallery__image')) {
-    return
-  }
-  console.log('event.target')
-  
-  const currentActiveImage = document.querySelector('.gallery__item.is-active');
-  if (currentActiveImage) {
-    currentActiveImage.remove('is-active')
-  }
-  const galleryItem = event.target;
-  const parentImage = galleryItem.closest('.gallery__item');
-  parentImage.classlist.add('is-active');
+const clear = document.querySelector('.lightbox__image.src');
+function clearEl() {
+ 
+  clear.innerHtml = '';
 }
+// gallery.addEventListener('click', onGallery);
+
+// function onGallery(event) {
+//   if (!event.target.classlist.contains('gallery__image')) {
+//     return
+//   }
+//   console.log('event.target')
+  
+//   const currentActiveImage = document.querySelector('.gallery__item.is-active');
+//   if (currentActiveImage) {
+//     currentActiveImage.remove('is-active')
+//   }
+//   const galleryItem = event.target;
+//   const parentImage = galleryItem.closest('.gallery__item');
+//   parentImage.classlist.add('is-active');
+// }
 
 function createImageMarkup() {
   return images
