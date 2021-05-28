@@ -77,12 +77,12 @@ function onOpen(event) {
   event.preventDefault();
   // console.log('click')
   window.addEventListener('keydown', onEscKeyPress);
-  document.classOpenClose.classList.add('is-open');
+  classOpenClose.classList.add('is-open');
  
 };
 function onClose() {
   window.removeEventListener('keydown', onEscKeyPress);
-  document.classOpenClose.classList.remove('is-open')
+  classOpenClose.classList.remove('is-open')
 };
 
 function onEscKeyPress(event) {
