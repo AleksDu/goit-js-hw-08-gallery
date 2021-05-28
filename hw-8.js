@@ -66,23 +66,37 @@ const images = [
   },
 ];
 
+const gallery = document.querySelector('.js-gallery');
+const modal = document.querySelector('.lightbox');
+gallery.addEventListener("click", imagesClick);
 
-const openModalBtn = document.querySelector('.js-gallery');
-const closeModalBtn = document.querySelector('button[data-action="close-lightbox"]');
-openModalBtn.addEventListener('click', onOpen);
-closeModalBtn.addEventListener('click', onClose);
-const classOpenClose = document.querySelector('.js-lightbox')
+function imagesClick(event) {
+  event.imagesDefault();
+  if (!event.target.classList.contains("gallery__image")) {
+    return;
+  }
+  
+  const openModalBtn = document.querySelector('.js-gallery');
+  openModalBtn.addEventListener('click', onOpen);
 
-function onOpen(event) {
-  event.preventDefault();
-  // console.log('click')
-  window.addEventListener('keydown', onEscKeyPress);
-  classOpenClose.classList.add('is-open');
  
+  function onOpen() {
+  openModalBtn.addEventListener('keydown', onEscKeyPress);
+ 
+modal.classList.add("is-open");
 };
-function onClose() {
+
+  openModalBtn.src = event.target.dataset.source;
+}
+
+
+const closeModalBtn = document.querySelector('button[data-action="close-lightbox"]');
+closeModalBtn.addEventListener('click', onClose);
+
+function onClose(event) {
   window.removeEventListener('keydown', onEscKeyPress);
-  classOpenClose.classList.remove('is-open')
+  modal.classList.remove('is-open')
+  event.target.dataset.source = "";
 };
 
 function onEscKeyPress(event) {
@@ -92,33 +106,13 @@ function onEscKeyPress(event) {
   }
   onClose();
 }
-const gallery = document.querySelector('.js-gallery');
+
 
 const imageMarkup = createImageMarkup('images');
 
 gallery.insertAdjacentHTML('beforeend', imageMarkup);
 
-const clear = document.querySelector('.lightbox__image.src');
-function clearEl() {
- 
-  clear.innerHtml = '';
-}
-// gallery.addEventListener('click', onGallery);
 
-// function onGallery(event) {
-//   if (!event.target.classList.contains('gallery__image')) {
-//     return
-//   }
-//   console.log('event.target')
-  
-//   const currentActiveImage = document.querySelector('.gallery__item.is-active');
-//   if (currentActiveImage) {
-//     currentActiveImage.remove('is-active')
-//   }
-//   const galleryItem = event.target;
-//   const parentImage = galleryItem.closest('.gallery__item');
-//   parentImage.classList.add('is-active');
-// }
 
 function createImageMarkup() {
   return images
