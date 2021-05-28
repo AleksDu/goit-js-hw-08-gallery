@@ -1,4 +1,4 @@
-const images = [
+const export default = [
   {
     preview:
       'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg',
@@ -63,65 +63,3 @@ const images = [
     description: 'Lighthouse Coast Sea',
   },
 ];
-
-const openModalBtn = document.querySelector('.lightbox');
-const closeModalBtn = document.querySelector('button[data-action="close-lightbox"]');
-openModalBtn.addEventListener('click', onOpen);
-closeModalBtn.addEventListener('click', onClose);
-
-function onOpen(event) {
-  window.addEventListener('keydown', onEscKeyPress);
-  document.body.classlist.add('is-open');
-  event.preventDefault();
-};
-function onClose() {
-  window.removeEventListener('keydown', onEscKeyPress);
-  document.body.classlist.remove('is-open')
-};
-
-function onEscKeyPress(event) {
-  console.log(event.code);
-  if (event.code === 'Escape') {
-    onClose();
-  }
-  onClose();
-}
-const gallery = document.querySelector('.js-gallery');
-
-const imageMarkup = createImageMarkup('images');
-
-gallery.insertAdjacentHTML('beforeend', imageMarkup);
-
-const clear = document.querySelector('.lightbox__image.src');
-function clearEl() {
- 
-  clear.innerHtml = '';
-}
-// gallery.addEventListener('click', onGallery);
-
-// function onGallery(event) {
-//   if (!event.target.classlist.contains('gallery__image')) {
-//     return
-//   }
-//   console.log('event.target')
-  
-//   const currentActiveImage = document.querySelector('.gallery__item.is-active');
-//   if (currentActiveImage) {
-//     currentActiveImage.remove('is-active')
-//   }
-//   const galleryItem = event.target;
-//   const parentImage = galleryItem.closest('.gallery__item');
-//   parentImage.classlist.add('is-active');
-// }
-
-function createImageMarkup() {
-  return images
-    .map(({ preview, original, description }) => {
-      return `<li class="gallery__item">
-        <a class="gallery__link" href=${original}>
-            <img class="gallery__image" src=${preview}
-                data-source=${original} alt=${description} />
-        </a>
-    </li>`;
-    }).join('');
-}
