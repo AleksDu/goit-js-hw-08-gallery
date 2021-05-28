@@ -67,15 +67,17 @@ const images = [
 ];
 
 
-const openModalBtn = document.querySelector('.lightbox');
+const openModalBtn = document.querySelector('.js-gallery');
 const closeModalBtn = document.querySelector('button[data-action="close-lightbox"]');
 openModalBtn.addEventListener('click', onOpen);
 closeModalBtn.addEventListener('click', onClose);
 
 function onOpen(event) {
+  event.preventDefault();
+  console.log(click)
   window.addEventListener('keydown', onEscKeyPress);
   document.body.classlist.add('is-open');
-  event.preventDefault(); 
+ 
 };
 function onClose() {
   window.removeEventListener('keydown', onEscKeyPress);
