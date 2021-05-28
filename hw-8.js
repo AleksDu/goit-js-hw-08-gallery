@@ -67,12 +67,12 @@ const images = [
 ];
 
 const gallery = document.querySelector('.js-gallery');
-const modal = document.querySelector('.lightbox');
+const modal = document.querySelector('.js-lightbox');
 gallery.addEventListener("click", imagesClick);
 
 function imagesClick(event) {
   event.imagesDefault();
-  if (!event.target.classList.contains("gallery__image")) {
+  if (!event.target.classList.contains("gallery")) {
     return;
   }
   
