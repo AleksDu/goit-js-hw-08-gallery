@@ -74,7 +74,7 @@ closeModalBtn.addEventListener('click', onClose);
 
 function onOpen(event) {
   event.preventDefault();
-  console.log(click)
+  // console.log('click')
   window.addEventListener('keydown', onEscKeyPress);
   document.body.classlist.add('is-open');
  
