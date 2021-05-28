@@ -72,17 +72,17 @@ gallery.addEventListener("click", imagesClick);
 
 function imagesClick(event) {
   event.imagesDefault();
-  if (!event.target.classList.contains("gallery")) {
+  if (!event.target.classList.contains(".gallery__image")) {
     return;
   }
   
-  const openModalBtn = document.querySelector('.js-gallery');
+  const openModalBtn = document.querySelector('.gallery');
   openModalBtn.addEventListener('click', onOpen);
 
   function onOpen() {
   openModalBtn.addEventListener('keydown', onEscKeyPress);
  
-modal.classList.add("is-open");
+  modal.classList.add("is-open");
 };
  
 
@@ -97,7 +97,11 @@ function onClose(event) {
   window.removeEventListener('keydown', onEscKeyPress);
   modal.classList.remove('is-open')
   event.target.dataset.source = "";
+  
 };
+console.log(closeModalBtn)
+console.log(onClose)
+
 
 function onEscKeyPress(event) {
   console.log(event.code);
