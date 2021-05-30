@@ -25,6 +25,10 @@ gallery.addEventListener('click', onOpen);
 closeModalBtn.addEventListener('click', onClose);
 function onOpen(event) {
   event.preventDefault();
+  if (!event.target.classList.contains('gallery__image')) {
+    return
+    // event.target.dataset.source
+  }
   window.addEventListener('keydown', onEscKeyPress);
   modal.classList.add('is-open');
   lightboxImage.src = event.target.dataset.source;
@@ -55,8 +59,10 @@ function onEscKeyPress(event) {
 //       newIndex = 0;
 //     }
 //   }
-//  lightboxImage.src = images[newIndex];
+//   lightboxImage.src = images[newIndex];
+  
 // });
+// console.log(lightboxImage.src)
 
 // const gallery = document.querySelector('.js-gallery');
 // const modal = document.querySelector('.js-lightbox');
